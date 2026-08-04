@@ -14,7 +14,7 @@ class TestUnitsIO(AcquisitionH5IOMixin, TestCase):
 
     def setUpContainer(self):
         """ Return the test Units to read/write """
-        ut = Units(name='UnitsTest', description='a simple table for testing Units')
+        ut = Units(name='UnitsTest', description='a simple table for testing Units', waveform_unit='microvolts')
         ut.add_unit(spike_times=[0., 1., 2.], obs_intervals=[[0., 1.], [2., 3.]],
                     waveform_mean=[1., 2., 3.], waveform_sd=[4., 5., 6.],
                     waveforms=[
@@ -69,6 +69,15 @@ class TestUnitsIO(AcquisitionH5IOMixin, TestCase):
         received = ut.get_unit_obs_intervals(1)
         np.testing.assert_array_equal(received, [[2., 5.], [6., 7.]])
         np.testing.assert_array_equal(ut['obs_intervals'][:], [[[0., 1.], [2., 3.]], [[2., 5.], [6., 7.]]])
+
+    def test_roundtrip(self):
+        super().test_roundtrip()
+        with h5py.File(self.filename, 'r') as infile:
+            for name in ('waveform_mean', 'waveform_sd', 'waveforms'):
+                unit = infile['acquisition'][self.container.name][name].attrs['unit']
+                if isinstance(unit, bytes):
+                    unit = unit.decode('utf-8')
+                self.assertEqual(unit, 'microvolts')
 
 
 class TestUnitsWaveformsOnlyIO(AcquisitionH5IOMixin, TestCase):

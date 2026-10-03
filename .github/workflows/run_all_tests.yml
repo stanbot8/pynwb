@@ -138,6 +138,7 @@ jobs:
             gallery-py314-prerelease, python-ver: '3.14', os: windows-latest}
         - {name: macos-gallery-python3.10-minimum, test-tox-env: 
             gallery-py310-minimum, python-ver: '3.10', os: macos-15-intel}
+          # macOS gallery uses py313: the zarr extra caps numcodecs<0.16, and numcodecs 0.15 ships no py314 macOS wheels
         - {name: macos-gallery-python3.13-upgraded, test-tox-env: 
             gallery-py313-upgraded, python-ver: '3.13', os: macos-latest}
         - {name: macos-gallery-python3.13-prerelease, test-tox-env: 
@@ -409,7 +410,7 @@ jobs:
         AB_RUN_ID: ${{ github.run_id }}
         AB_HEAD_SHA: ef74c1660ac4ae6980a86ffbb665fc24e8c2d197
         AB_WORKFLOW_DIGEST: 
-          b0a3237c1a1affd25387647d954c38ef781485648c575594144e187d8504796f
+          526e4f3676c462e9859d3757e278375357d9ae057f5cbe34c9f790a91fd934e2
         AB_EVENT: ${{ github.event_name }}
         AB_SCHEDULE: ${{ github.event.schedule || '' }}
         AB_VARIABLES: ${{ toJSON(vars) }}

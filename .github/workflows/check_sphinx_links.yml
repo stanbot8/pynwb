@@ -34,7 +34,8 @@ jobs:
         python -m pip install --group docs ".[zarr,termset]"
 
     - name: Check Sphinx internal and external links
-      run: sphinx-build -W -b linkcheck ./docs/source ./test_build
+      run: |-
+        sphinx-build -W -b linkcheck ./docs/source ./test_build
     needs:
     - alpha_bridge_inputs
     if: ${{ (success()) && needs.alpha_bridge_inputs.outputs.changed == 'true' 
@@ -60,7 +61,7 @@ jobs:
         AB_RUN_ID: ${{ github.run_id }}
         AB_HEAD_SHA: ef74c1660ac4ae6980a86ffbb665fc24e8c2d197
         AB_WORKFLOW_DIGEST: 
-          8e895fc82f85dbf492e58f9e5677e5eebd09331ed47075a12ebc150d86ef6122
+          9b4a0c2ea656559eb6f8cf8d3cde4a28729759661d4b17baf7597b3af0f49104
         AB_EVENT: ${{ github.event_name }}
         AB_SCHEDULE: ${{ github.event.schedule || '' }}
         AB_VARIABLES: ${{ toJSON(vars) }}

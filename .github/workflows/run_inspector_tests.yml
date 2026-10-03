@@ -29,7 +29,9 @@ jobs:
         python-version: '3.12'
 
     - name: Update pip
-      run: python -m pip install --upgrade pip
+      run: |-
+        python -m pip install --upgrade pip
+
 
     - name: Clone NWB Inspector and install dev branch of PyNWB
       run: |
@@ -74,7 +76,7 @@ jobs:
         AB_RUN_ID: ${{ github.run_id }}
         AB_HEAD_SHA: ef74c1660ac4ae6980a86ffbb665fc24e8c2d197
         AB_WORKFLOW_DIGEST: 
-          36f5a759f48f04a69e95073179729b5b53a5c99100e19a3afbaa8e7556ff0f43
+          308e279f3d884672233d4354f52c68cd82d7060c3da7923925a8813d8c09bffe
         AB_EVENT: ${{ github.event_name }}
         AB_SCHEDULE: ${{ github.event.schedule || '' }}
         AB_VARIABLES: ${{ toJSON(vars) }}

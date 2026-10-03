@@ -1,17 +1,17 @@
 {
   "definition_blob_sha1": {
-    ".github/workflows/alpha-bridge-ci-verify.yml": "0588ba302e7a97a9721ae7494f6b9aca053476b6",
-    ".github/workflows/check_sphinx_links.yml": "82f3b703465f1a8fe0800ebe163421c8fc0b903f",
-    ".github/workflows/run_all_tests.yml": "6f9ec611b23ff6a5a1a235a043105b4098593fab",
-    ".github/workflows/run_inspector_tests.yml": "70a4ec84d86a91bbe138f5d3b146cedc13d54849"
+    ".github/workflows/alpha-bridge-ci-verify.yml": "211d78b275bbb87055d46d18edfc9b309afb7fd3",
+    ".github/workflows/check_sphinx_links.yml": "6643a72d6bb464ffc27f8348854dab9837b41fbd",
+    ".github/workflows/run_all_tests.yml": "68224926fba2c41799231edc8798e99f6021f554",
+    ".github/workflows/run_inspector_tests.yml": "a14ba19e3e91dcce60df0727d74a2e1d115c3218"
   },
   "definition_sha256": {
-    ".github/workflows/alpha-bridge-ci-verify.yml": "d3dacd19a9c94cd86ca5ba24b075c35f3ff224d155ca5891f3b4325ece933dac",
-    ".github/workflows/check_sphinx_links.yml": "fbb103214b144bf55d3915da7e595bb7c16404cffc42cf985d6d85000e947a8e",
-    ".github/workflows/run_all_tests.yml": "0a84847426a67f5adcffb2857aaee3e9d546031414f9bb183fa3311274709404",
-    ".github/workflows/run_inspector_tests.yml": "6ee7e5096be1b1ed85761870a5a931e7ff5c100b3e16c78c12e355f072570e07"
+    ".github/workflows/alpha-bridge-ci-verify.yml": "4cac5461d20019fd71bd15ab6e775a433bcfc570d3cc96f9132a4bf68d15c04e",
+    ".github/workflows/check_sphinx_links.yml": "661e04cd2d9eae81563741d399ec0a0c1b2d9d05a89bd3ffa23eb1e4895c8533",
+    ".github/workflows/run_all_tests.yml": "7b9b642d5bb8ec19636ff8a28397bbd056a718402315e2283e0095c88ad3e5bb",
+    ".github/workflows/run_inspector_tests.yml": "1580fdbee969eb84c94badf5ebacf0cb9dedfb65f7605704d29e2c22f3b9559f"
   },
-  "generator_sha256": "f238e5d52b0ec5c07f088af203f93698fbdea22a995856dc18c50f5365431353",
+  "generator_sha256": "f5fbad0230ba7fa85305a317f424ab1f31bb96ff28ce023a46664fdaad8051c9",
   "schema": "alpha-bridge/fork-ci",
   "source_branch": "dev",
   "source_commit": "ef74c1660ac4ae6980a86ffbb665fc24e8c2d197",

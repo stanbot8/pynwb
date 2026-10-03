@@ -1,0 +1,26 @@
+{
+  "definition_blob_sha1": {
+    ".github/workflows/alpha-bridge-ci-verify.yml": "0588ba302e7a97a9721ae7494f6b9aca053476b6",
+    ".github/workflows/check_sphinx_links.yml": "82f3b703465f1a8fe0800ebe163421c8fc0b903f",
+    ".github/workflows/run_all_tests.yml": "6f9ec611b23ff6a5a1a235a043105b4098593fab",
+    ".github/workflows/run_inspector_tests.yml": "70a4ec84d86a91bbe138f5d3b146cedc13d54849"
+  },
+  "definition_sha256": {
+    ".github/workflows/alpha-bridge-ci-verify.yml": "d3dacd19a9c94cd86ca5ba24b075c35f3ff224d155ca5891f3b4325ece933dac",
+    ".github/workflows/check_sphinx_links.yml": "fbb103214b144bf55d3915da7e595bb7c16404cffc42cf985d6d85000e947a8e",
+    ".github/workflows/run_all_tests.yml": "0a84847426a67f5adcffb2857aaee3e9d546031414f9bb183fa3311274709404",
+    ".github/workflows/run_inspector_tests.yml": "6ee7e5096be1b1ed85761870a5a931e7ff5c100b3e16c78c12e355f072570e07"
+  },
+  "generator_sha256": "f238e5d52b0ec5c07f088af203f93698fbdea22a995856dc18c50f5365431353",
+  "schema": "alpha-bridge/fork-ci",
+  "source_branch": "dev",
+  "source_commit": "ef74c1660ac4ae6980a86ffbb665fc24e8c2d197",
+  "source_repository": "NeurodataWithoutBorders/pynwb",
+  "version": 1,
+  "workflows": [
+    ".github/workflows/alpha-bridge-ci-verify.yml",
+    ".github/workflows/check_sphinx_links.yml",
+    ".github/workflows/run_all_tests.yml",
+    ".github/workflows/run_inspector_tests.yml"
+  ]
+}

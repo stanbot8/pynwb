@@ -1,17 +1,17 @@
 {
   "definition_blob_sha1": {
     ".github/workflows/alpha-bridge-ci-verify.yml": "211d78b275bbb87055d46d18edfc9b309afb7fd3",
-    ".github/workflows/check_sphinx_links.yml": "6643a72d6bb464ffc27f8348854dab9837b41fbd",
-    ".github/workflows/run_all_tests.yml": "68224926fba2c41799231edc8798e99f6021f554",
-    ".github/workflows/run_inspector_tests.yml": "a14ba19e3e91dcce60df0727d74a2e1d115c3218"
+    ".github/workflows/check_sphinx_links.yml": "c13aa2493e846e24dd964e3d5521925f2feb6c94",
+    ".github/workflows/run_all_tests.yml": "0bba25222c5105da6a620b3243208e6b1494a515",
+    ".github/workflows/run_inspector_tests.yml": "cad07a1bb4ceffdd16d6f3b629a12c61806ddf35"
   },
   "definition_sha256": {
     ".github/workflows/alpha-bridge-ci-verify.yml": "4cac5461d20019fd71bd15ab6e775a433bcfc570d3cc96f9132a4bf68d15c04e",
-    ".github/workflows/check_sphinx_links.yml": "661e04cd2d9eae81563741d399ec0a0c1b2d9d05a89bd3ffa23eb1e4895c8533",
-    ".github/workflows/run_all_tests.yml": "7b9b642d5bb8ec19636ff8a28397bbd056a718402315e2283e0095c88ad3e5bb",
-    ".github/workflows/run_inspector_tests.yml": "1580fdbee969eb84c94badf5ebacf0cb9dedfb65f7605704d29e2c22f3b9559f"
+    ".github/workflows/check_sphinx_links.yml": "1b4147c752886cb0816151ebf72208d70b09c085605fc59a6dab83b24f4c800e",
+    ".github/workflows/run_all_tests.yml": "19269a80be120756f18268d3ecb1dadb47557cabe5687f4ccc2a354ed251b98d",
+    ".github/workflows/run_inspector_tests.yml": "5183d4da64c5730d73e5d5ed9af4b645dd9e0eefa038c047704722df3f5835be"
   },
-  "generator_sha256": "f5fbad0230ba7fa85305a317f424ab1f31bb96ff28ce023a46664fdaad8051c9",
+  "generator_sha256": "3b26cda454cba3b637212cdea3d130c69e2223d93535daef4f59e8f73b2e6cc3",
   "schema": "alpha-bridge/fork-ci",
   "source_branch": "dev",
   "source_commit": "ef74c1660ac4ae6980a86ffbb665fc24e8c2d197",

@@ -8,7 +8,8 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ (github.event_name == 'schedule' && 
+    'refs/heads/dev' || github.ref) }}
   cancel-in-progress: ${{ github.event_name != 'schedule' && (true) }}
 
 jobs:
@@ -74,6 +75,8 @@ jobs:
         submodules: recursive
         fetch-depth: 0    # tags are required for versioneer to determine the version
 
+        ref: ${{ github.event_name == 'schedule' && 
+          'ef74c1660ac4ae6980a86ffbb665fc24e8c2d197' || github.sha }}
     - name: Set up Python
       uses: actions/setup-python@v7
       with:
@@ -105,6 +108,13 @@ jobs:
       run: |
         tox -e wheelinstall --recreate --installpkg dist/*-none-any.whl
 
+    env:
+      ALPHA_BRIDGE_SOURCE_SHA: ${{ github.event_name == 'schedule' && 
+        'ef74c1660ac4ae6980a86ffbb665fc24e8c2d197' || github.sha }}
+      ALPHA_BRIDGE_SOURCE_REF: ${{ github.event_name == 'schedule' && 
+        'refs/heads/dev' || github.ref }}
+      ALPHA_BRIDGE_SOURCE_REF_NAME: ${{ github.event_name == 'schedule' && 'dev'
+        || github.ref_name }}
     needs:
     - alpha_bridge_inputs
     if: ${{ (success()) && needs.alpha_bridge_inputs.outputs.changed == 'true' 
@@ -133,7 +143,6 @@ jobs:
             gallery-py314-prerelease, python-ver: '3.14', os: windows-latest}
         - {name: macos-gallery-python3.10-minimum, test-tox-env: 
             gallery-py310-minimum, python-ver: '3.10', os: macos-15-intel}
-          # macOS gallery uses py313: the zarr extra caps numcodecs<0.16, and numcodecs 0.15 ships no py314 macOS wheels
         - {name: macos-gallery-python3.13-upgraded, test-tox-env: 
             gallery-py313-upgraded, python-ver: '3.13', os: macos-latest}
         - {name: macos-gallery-python3.13-prerelease, test-tox-env: 
@@ -144,6 +153,8 @@ jobs:
         submodules: recursive
         fetch-depth: 0    # tags are required for versioneer to determine the version
 
+        ref: ${{ github.event_name == 'schedule' && 
+          'ef74c1660ac4ae6980a86ffbb665fc24e8c2d197' || github.sha }}
     - name: Set up Python
       uses: actions/setup-python@v7
       with:
@@ -159,6 +170,13 @@ jobs:
       run: |
         tox -e ${{ matrix.test-tox-env }}
 
+    env:
+      ALPHA_BRIDGE_SOURCE_SHA: ${{ github.event_name == 'schedule' && 
+        'ef74c1660ac4ae6980a86ffbb665fc24e8c2d197' || github.sha }}
+      ALPHA_BRIDGE_SOURCE_REF: ${{ github.event_name == 'schedule' && 
+        'refs/heads/dev' || github.ref }}
+      ALPHA_BRIDGE_SOURCE_REF_NAME: ${{ github.event_name == 'schedule' && 'dev'
+        || github.ref_name }}
     needs:
     - alpha_bridge_inputs
     if: ${{ (success()) && needs.alpha_bridge_inputs.outputs.changed == 'true' 
@@ -191,6 +209,8 @@ jobs:
         submodules: recursive
         fetch-depth: 0    # tags are required for versioneer to determine the version
 
+        ref: ${{ github.event_name == 'schedule' && 
+          'ef74c1660ac4ae6980a86ffbb665fc24e8c2d197' || github.sha }}
     - name: Set up Conda
       uses: conda-incubator/setup-miniconda@v4
       with:
@@ -230,6 +250,13 @@ jobs:
         tox -e wheelinstall --recreate --installpkg dist/*-none-any.whl
 
 
+    env:
+      ALPHA_BRIDGE_SOURCE_SHA: ${{ github.event_name == 'schedule' && 
+        'ef74c1660ac4ae6980a86ffbb665fc24e8c2d197' || github.sha }}
+      ALPHA_BRIDGE_SOURCE_REF: ${{ github.event_name == 'schedule' && 
+        'refs/heads/dev' || github.ref }}
+      ALPHA_BRIDGE_SOURCE_REF_NAME: ${{ github.event_name == 'schedule' && 'dev'
+        || github.ref_name }}
     needs:
     - alpha_bridge_inputs
     if: ${{ (success()) && needs.alpha_bridge_inputs.outputs.changed == 'true' 
@@ -257,6 +284,8 @@ jobs:
         submodules: recursive
         fetch-depth: 0    # tags are required for versioneer to determine the version
 
+        ref: ${{ github.event_name == 'schedule' && 
+          'ef74c1660ac4ae6980a86ffbb665fc24e8c2d197' || github.sha }}
     - name: Set up Conda
       uses: conda-incubator/setup-miniconda@v4
       with:
@@ -279,6 +308,13 @@ jobs:
       run: |
         python scripts/test_ros3.py --ros3
 
+    env:
+      ALPHA_BRIDGE_SOURCE_SHA: ${{ github.event_name == 'schedule' && 
+        'ef74c1660ac4ae6980a86ffbb665fc24e8c2d197' || github.sha }}
+      ALPHA_BRIDGE_SOURCE_REF: ${{ github.event_name == 'schedule' && 
+        'refs/heads/dev' || github.ref }}
+      ALPHA_BRIDGE_SOURCE_REF_NAME: ${{ github.event_name == 'schedule' && 'dev'
+        || github.ref_name }}
     needs:
     - alpha_bridge_inputs
     if: ${{ (success()) && needs.alpha_bridge_inputs.outputs.changed == 'true' 
@@ -306,6 +342,8 @@ jobs:
         submodules: recursive
         fetch-depth: 0    # tags are required for versioneer to determine the version
 
+        ref: ${{ github.event_name == 'schedule' && 
+          'ef74c1660ac4ae6980a86ffbb665fc24e8c2d197' || github.sha }}
     - name: Set up Conda
       uses: conda-incubator/setup-miniconda@v4
       with:
@@ -334,6 +372,13 @@ jobs:
 
   # the streaming HERD gallery example is excluded from the offline example
   # tests (it streams from the DANDI Archive), so run it once here
+    env:
+      ALPHA_BRIDGE_SOURCE_SHA: ${{ github.event_name == 'schedule' && 
+        'ef74c1660ac4ae6980a86ffbb665fc24e8c2d197' || github.sha }}
+      ALPHA_BRIDGE_SOURCE_REF: ${{ github.event_name == 'schedule' && 
+        'refs/heads/dev' || github.ref }}
+      ALPHA_BRIDGE_SOURCE_REF_NAME: ${{ github.event_name == 'schedule' && 'dev'
+        || github.ref_name }}
     needs:
     - alpha_bridge_inputs
     if: ${{ (success()) && needs.alpha_bridge_inputs.outputs.changed == 'true' 
@@ -351,6 +396,8 @@ jobs:
         submodules: recursive
         fetch-depth: 0    # tags are required for versioneer to determine the version
 
+        ref: ${{ github.event_name == 'schedule' && 
+          'ef74c1660ac4ae6980a86ffbb665fc24e8c2d197' || github.sha }}
     - name: Set up Python
       uses: actions/setup-python@v7
       with:
@@ -365,6 +412,13 @@ jobs:
     - name: Run the DANDI streaming HERD example
       run: |
         python docs/gallery/general/resources_streaming.py
+    env:
+      ALPHA_BRIDGE_SOURCE_SHA: ${{ github.event_name == 'schedule' && 
+        'ef74c1660ac4ae6980a86ffbb665fc24e8c2d197' || github.sha }}
+      ALPHA_BRIDGE_SOURCE_REF: ${{ github.event_name == 'schedule' && 
+        'refs/heads/dev' || github.ref }}
+      ALPHA_BRIDGE_SOURCE_REF_NAME: ${{ github.event_name == 'schedule' && 'dev'
+        || github.ref_name }}
     needs:
     - alpha_bridge_inputs
     if: ${{ (success()) && needs.alpha_bridge_inputs.outputs.changed == 'true' 
@@ -390,7 +444,7 @@ jobs:
         AB_RUN_ID: ${{ github.run_id }}
         AB_HEAD_SHA: ef74c1660ac4ae6980a86ffbb665fc24e8c2d197
         AB_WORKFLOW_DIGEST: 
-          a9b52fbd6a34fe44f19ab41cf6cfd43698e40f1598075a02f40457a5ad81a055
+          e7ee19041c9191e38864bc814472bbb838a1b5fd24ce392c2ced4eb3a4fa121e
         AB_EVENT: ${{ github.event_name }}
         AB_SCHEDULE: ${{ github.event.schedule || '' }}
         AB_VARIABLES: ${{ toJSON(vars) }}

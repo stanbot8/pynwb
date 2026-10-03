@@ -6,7 +6,8 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ (github.event_name == 'schedule' && 
+    'refs/heads/dev' || github.ref) }}
   cancel-in-progress: ${{ github.event_name != 'schedule' && (true) }}
 
 jobs:
@@ -18,6 +19,8 @@ jobs:
         submodules: recursive
         fetch-depth: 0    # tags are required for versioneer to determine the version
 
+        ref: ${{ github.event_name == 'schedule' && 
+          'ef74c1660ac4ae6980a86ffbb665fc24e8c2d197' || github.sha }}
     - name: Set up Python
       uses: actions/setup-python@v7
       with:
@@ -30,6 +33,13 @@ jobs:
 
     - name: Check Sphinx internal and external links
       run: sphinx-build -W -b linkcheck ./docs/source ./test_build
+    env:
+      ALPHA_BRIDGE_SOURCE_SHA: ${{ github.event_name == 'schedule' && 
+        'ef74c1660ac4ae6980a86ffbb665fc24e8c2d197' || github.sha }}
+      ALPHA_BRIDGE_SOURCE_REF: ${{ github.event_name == 'schedule' && 
+        'refs/heads/dev' || github.ref }}
+      ALPHA_BRIDGE_SOURCE_REF_NAME: ${{ github.event_name == 'schedule' && 'dev'
+        || github.ref_name }}
     needs:
     - alpha_bridge_inputs
     if: ${{ (success()) && needs.alpha_bridge_inputs.outputs.changed == 'true' 
@@ -55,7 +65,7 @@ jobs:
         AB_RUN_ID: ${{ github.run_id }}
         AB_HEAD_SHA: ef74c1660ac4ae6980a86ffbb665fc24e8c2d197
         AB_WORKFLOW_DIGEST: 
-          7946a6594d062d03174a9a5ee2fd25bf16aff1d8685c702817f01d0ec9fe4c6a
+          db8dfcafe7af9db712841758199cc7459cdeb731c575c8f0f7def44bcb2cc344
         AB_EVENT: ${{ github.event_name }}
         AB_SCHEDULE: ${{ github.event.schedule || '' }}
         AB_VARIABLES: ${{ toJSON(vars) }}
